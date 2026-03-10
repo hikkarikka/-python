@@ -4,18 +4,24 @@ class BankAcc:
         self._balance = balance
         self.__acc_num = acc_num
 
-
-    def get_balance(self):
+    @property
+    def balance(self):
         return self._balance
     
-    def set_balance(self, balance):
+    @balance.setter
+    def balance(self, balance):
         if balance <= 0:
             print("невозможно изменить баланс")
         else:
             self._balance = balance
     
-    def get_acc_num(self):
+    @property
+    def acc_num(self):
         return self.__acc_num
+    
+    @acc_num.setter
+    def acc_num(self, new_acc):
+        self.__acc_num = new_acc
     
     def deposit(self, sum):
         if sum > 0:
@@ -39,6 +45,10 @@ class BankAcc:
         print(self.__acc_num)
 
 b1 = BankAcc("Alex", 5000 , 121223)
-b1.set_balance(4700)
-print(b1.get_balance())
+# b1.set_balance(4700)
+# print(b1.get_balance())
 b1.get_info()
+
+print(b1.acc_num)
+b1.acc_num = 131323
+print(b1.acc_num)
