@@ -29,5 +29,5 @@ class Student:
 s1 = Student("Roman", 85)
 s2 = Student("vova", 98)
 
-s1.info
+print(s1.info)
 s2.info
