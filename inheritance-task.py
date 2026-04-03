@@ -49,7 +49,7 @@ class Basket:
             else:
                 print("такого товара нет в корзине")
 
-    def sale(self, percent):
+    def discount(self, percent):
         if percent >=0 and percent <=100:
             self.sale = percent
         else:
@@ -76,7 +76,8 @@ if __name__ == "__main__":
         basket = Basket()
         basket.add(phone)
         basket.add(shirt)
-        basket.sale(20)
+        basket.delete("Iphone")
+        basket.discount(20)
         basket.show()
     except ValueError as e:
         print("Ошибка:", e)
