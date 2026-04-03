@@ -36,20 +36,38 @@ class Clothes(Product):
 class Basket:
     def __init__(self):
         self.products = []
+        self.sale = 0
 
     def add(self, product):
         self.products.append(product)
 
-    def card(self):
+    def delete(self, product_name):
+        for i in self.products:
+            if i.name.lower() == product_name.lower():
+                self.products.remove(i)
+                print (f"товар {product_name} удален")
+            else:
+                print("такого товара нет в корзине")
+
+    def sale(self, percent):
+        if percent >=0 and percent <=100:
+            self.sale = percent
+        else:
+            raise ValueError("скидка не может быть меньше нуля или больше ста")
+
+    def cost(self):
+        count = sum(i.price for i in self.products)
+        return count * (1 - self.sale / 100)
+        # for i in self.products:
+        #     count += i.price
+        # return count
+
+    def show(self):
         for i in self.products:
             print(i.info())
-        print(f"итого: {self.sum()} тенге")
+        print(f"скидка {self.sale}")
+        print(f"итоговая цена {self.cost()}")
 
-    def sum(self):
-        count = 0
-        for i in self.products:
-            count += i.price
-        return count
     
 if __name__ == "__main__":
     try:
@@ -58,7 +76,7 @@ if __name__ == "__main__":
         basket = Basket()
         basket.add(phone)
         basket.add(shirt)
-        basket.card()
-        # shirt.price = -2
+        basket.sale(20)
+        basket.show()
     except ValueError as e:
         print("Ошибка:", e)
